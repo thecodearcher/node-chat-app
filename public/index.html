@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src='https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js'></script>
     <title>node chat</title>
 </head>
-<body>
-    <p>1</p>
+
+<ion-app>
+    <ion-page class="show-page" ng-controller="RootCtrl">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Ionic 4 + Node</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="content" padding>
+            <ion-list id="receivedmsg"></ion-list>
+            <ion-list>
+<form id="chatform">
+                <ion-item >
+                    <ion-label floating>Test</ion-label>
+                    <ion-input name="message" id="msg" type="text"></ion-input>
+                </ion-item>
+                
+                    <ion-button type='submit'  ion-buttton>Send</ion-button>
+</form>
+            </ion-list>
+        </ion-content>
+    </ion-page>
+</ion-app>
+<script>
+    function send(params) {
+        console.log("sent");
+    }
+</script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/index.js" ></script>
-</body>
+
 </html>
