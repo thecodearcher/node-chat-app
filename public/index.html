@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<script src='https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js'></script>
+    <script src='https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js'></script>
     <title>node chat</title>
 </head>
 
@@ -18,24 +19,21 @@
         <ion-content class="content" padding>
             <ion-list id="receivedmsg"></ion-list>
             <ion-list>
-<form id="chatform">
-                <ion-item >
-                    <ion-label floating>Test</ion-label>
-                    <ion-input name="message" id="msg" type="text"></ion-input>
-                </ion-item>
-                
-                    <ion-button type='submit'  ion-buttton>Send</ion-button>
-</form>
+                <form id="chatform">
+                    <ion-item>
+                        <ion-label floating>Test</ion-label>
+                        <ion-input name="message" id="msg" type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-button full type='submit' ion-buttton>Send</ion-button>
+                </form>
+                <ion-button id="location_btn" full ion-buttton>Send Location</ion-button>
             </ion-list>
         </ion-content>
     </ion-page>
 </ion-app>
-<script>
-    function send(params) {
-        console.log("sent");
-    }
-</script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/index.js" ></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
 
 </html>

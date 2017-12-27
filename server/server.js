@@ -6,7 +6,7 @@ const http = require('http');
 const publicPath = path.join(__dirname,'../public');
 const app = express();
 
-const {generateMessage} = require('./utils/message');
+const {generateMessage, generateLocation} = require('./utils/message');
 var server = http.createServer(app);
 var io = socket(server);
 var port = process.env.PORT || 3000;
@@ -30,6 +30,11 @@ io.on('connection',(socket)=>{
             from:"got forom"
         });
      });
+
+     socket.on('shareLocation',(coords)=>{
+        io.emit('newLocation',generateLocation('Admin',coords.latitude,coords.longitude));
+     });
+
      socket.on('disconnect',()=>{
         console.log('User was disconnected');
      });
