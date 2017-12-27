@@ -1,4 +1,5 @@
 var socket = io();
+var location_btn = document.getElementById('location_btn');
 
 
 socket.on('connect', function () {
@@ -33,6 +34,9 @@ socket.on('newLocation', function (data) {
     
 
     document.getElementById('receivedmsg').appendChild(li);
+    location_btn.innerHTML = ' <ion-icon name="pin" color="primary"></ion-icon>';
+    location_btn.setAttribute('disabled', 'false');
+
 });
 
 document.getElementById('chatform').addEventListener('submit', (e) => {
@@ -48,7 +52,6 @@ document.getElementById('chatform').addEventListener('submit', (e) => {
     }
 });
 
-var location_btn = document.getElementById('location_btn');
 
 location_btn.addEventListener('click',()=>{
     if('geolocation' in navigator){
@@ -64,7 +67,9 @@ location_btn.addEventListener('click',()=>{
             console.log('position',pos);
         },(e)=>{
             console.log('cannot get loac',e);
-        })
+        });
+        location_btn.setAttribute('disabled','true');
+        location_btn.innerHTML='<p text-wrap>Sending Location</p>'
     }else{
         console.log('no location service');
     }

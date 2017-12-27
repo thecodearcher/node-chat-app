@@ -12,27 +12,44 @@
 <ion-app>
     <ion-page class="show-page" ng-controller="RootCtrl">
         <ion-header>
-            <ion-toolbar>
+            <ion-toolbar color="primary">
                 <ion-title>Ionic 4 + Node</ion-title>
             </ion-toolbar>
         </ion-header>
         <ion-content class="content" padding>
             <ion-list id="receivedmsg"></ion-list>
-            <ion-list>
-                <form id="chatform">
-                    <ion-item>
-                        <ion-label floating>Test</ion-label>
-                        <ion-input name="message" id="msg" type="text"></ion-input>
-                    </ion-item>
-
-                    <ion-button full type='submit' ion-buttton>Send</ion-button>
-                </form>
-                <ion-button id="location_btn" full ion-buttton>Send Location</ion-button>
-            </ion-list>
         </ion-content>
+        <ion-footer>
+            <ion-toolbar color="dark">
+                <ion-grid>
+                    <form style="display: inline" id="chatform">
+                        <ion-row>
+                            <ion-col col-10>
+                                <ion-item>
+                                    <ion-input autofocus="true" name="message" id="msg" type="text"></ion-input>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-2>
+
+                                <ion-button icon-only>
+                                    <ion-icon name="send" color="primary"></ion-icon>
+                                </ion-button>
+
+                                <ion-button type="button" onclick="return false" id="location_btn">
+                                    <ion-icon name="pin" color="primary"></ion-icon>
+                                </ion-button>
+
+
+                            </ion-col>
+                        </ion-row>
+                    </form>
+
+                </ion-grid>
+
+            </ion-toolbar>
+        </ion-footer>
     </ion-page>
 </ion-app>
-
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>
 
