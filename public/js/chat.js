@@ -4,6 +4,27 @@ var location_btn = document.getElementById('location_btn');
 var message_template = document.getElementById('message-template').innerHTML; 
 var location_template = document.getElementById('location-template').innerHTML; 
 
+function scrollDown(){
+    //selectors
+    let message = $('#receivedmsg');
+    let newMessage = message.children('last-child');
+console.log(message);
+console.log(newMessage.innerHeight());
+console.log(newMessage.prev().innerHeight());
+    //height
+    let clientHeight = message.clientHeight;
+    let scrollTop = message.scrollTop;
+    let scrollHeight = message.scrollHeight;
+    let newMessageHeight = newMessage.innerHeight();
+    let lastMessageHeight = newMessage.prev().innerHeight();
+    console.log(clientHeight + scrollTop + newMessageHeight + lastMessageHeight);
+    console.log(scrollHeight);
+    if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight>= scrollHeight){
+        message.scrollTop(scrollHeight);
+        console.log('down');
+    }
+}
+
 socket.on('connect', function () {
     console.log('connected');
 });
@@ -20,6 +41,7 @@ socket.on('newMessage', function (message) {
     });
  
        document.getElementById('receivedmsg').insertAdjacentHTML('beforeend',html);
+       scrollDown();
 });
 
 socket.on('newLocation', function (data) {
@@ -46,7 +68,7 @@ document.getElementById('chatform').addEventListener('submit', (e) => {
         socket.emit('createMessage', {
             from: "user",
             text: message
-        }, () => { from: "sss" }
+        }, () => {}
         );
     }
 });
