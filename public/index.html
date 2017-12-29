@@ -17,7 +17,9 @@
             </ion-toolbar>
         </ion-header>
         <ion-content class="content" padding>
-            <ion-list id="receivedmsg"></ion-list>
+            <ion-list id="receivedmsg">
+
+            </ion-list>
         </ion-content>
         <ion-footer>
             <ion-toolbar color="dark">
@@ -50,8 +52,35 @@
         </ion-footer>
     </ion-page>
 </ion-app>
+<script id="message-template" type="text/template">
+<ion-card text-wrap>
+    <ion-item class="message" text-wrap>
+    <div class="message__title" style="padding:10px">
+        <h4>{{from}}</h4>
+        <p>{{createdAt}}</p>
+    </div>
+    <div class="message__body">
+<span text-wrap style="width:100%;word-wrap:break-word;display:block">{{text}}</span>
+    </div>
+   </ion-item>
+</ion-card>
+</script>
+<script id="location-template" type="text/template">
+<ion-card text-wrap>
+    <ion-item class="message" text-wrap>
+    <div class="message__title" style="padding:10px">
+        <h4>{{from}}</h4>
+        <p>{{createdAt}}</p>
+    </div>
+    <div class="message__body">
+<a href="{{url}}" target="_blank">My Current Location</span>
+    </div>
+   </ion-item>
+</ion-card>
+</script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/libs/moment.js"></script>
+<script src="js/libs/mustache.js"></script>
 <script src="/js/index.js"></script>
 
 </html>
