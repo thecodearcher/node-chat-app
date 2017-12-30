@@ -1,2 +1,2 @@
 # node-chat-app
-Chat App With Node and socket io
+Chat App With Node,socket io and ionic 4 for frontend
