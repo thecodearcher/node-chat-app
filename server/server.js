@@ -22,17 +22,23 @@ io.on('connection',(socket)=>{
 
    
 
-     socket.on('createMessage',(message)=>{
-        
-        io.emit('newMessage',generateMessage(message.from,message.text));
+     socket.on('createMessage',(message,callback)=>{
+        let user = users.getUser(socket.id);
 
-        console.log('create email',message);
+        if(user && isRealString(message.text)){
+            io.to(user.room).emit('newMessage',generateMessage(user.name,message.text));
+
+        }
         
      });
 
      socket.on('shareLocation',(coords)=>{
-        io.emit('newLocation',generateLocation('Admin',coords.latitude,coords.longitude));
-     });
+         let user = users.getUser(socket.id);
+
+         if (user) {
+             io.to(user.room).emit('newLocation',generateLocation(user.name,coords.latitude,coords.longitude));
+         }
+    });
 
      socket.on('disconnect',()=>{
          let user = users.removeUser(socket.id);

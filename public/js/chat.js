@@ -77,7 +77,6 @@ document.getElementById('chatform').addEventListener('submit', (e) => {
     message = document.getElementById('msg').value;
     if (message) {
         socket.emit('createMessage', {
-            from: "user",
             text: message
         });
     }
