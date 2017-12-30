@@ -8,25 +8,32 @@ function scrollDown(){
     //selectors
     let message = $('#receivedmsg');
     let newMessage = message.children('last-child');
-console.log(message);
-console.log(newMessage.innerHeight());
-console.log(newMessage.prev().innerHeight());
+
     //height
     let clientHeight = message.clientHeight;
     let scrollTop = message.scrollTop;
     let scrollHeight = message.scrollHeight;
     let newMessageHeight = newMessage.innerHeight();
     let lastMessageHeight = newMessage.prev().innerHeight();
-    console.log(clientHeight + scrollTop + newMessageHeight + lastMessageHeight);
-    console.log(scrollHeight);
+   
     if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight>= scrollHeight){
         message.scrollTop(scrollHeight);
-        console.log('down');
+       
     }
 }
 
 socket.on('connect', function () {
     console.log('connected');
+    let params = $.deparam(window.location.search);
+
+    socket.emit('join',params,(err)=>{
+        if(err){
+            alert(err);
+            window.location.href='./index.html';
+        }else{
+            console.log("no lele");
+        }
+    });
 });
 
 socket.on('disconnect', function () {
@@ -55,9 +62,13 @@ socket.on('newLocation', function (data) {
     document.getElementById('receivedmsg').insertAdjacentHTML('beforeend',html);
 
 
-    location_btn.innerHTML = ' <ion-icon name="pin" color="primary"></ion-icon>';
+    location_btn.innerHTML = ' <ion-icon name="pin" color="dark"></ion-icon>';
     location_btn.setAttribute('disabled', 'false');
 
+});
+
+socket.on('updateUserList',(users)=>{
+    console.log("user list",users);
 });
 
 document.getElementById('chatform').addEventListener('submit', (e) => {
@@ -68,8 +79,7 @@ document.getElementById('chatform').addEventListener('submit', (e) => {
         socket.emit('createMessage', {
             from: "user",
             text: message
-        }, () => {}
-        );
+        });
     }
 });
 
